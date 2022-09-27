@@ -10,7 +10,7 @@ const logger = require('morgan');
 const connectDB = require('./config/database');
 const mainRoutes = require('./routes/main');
 const postRoutes = require('./routes/posts');
-const requestRoutes = require('./routes/request');
+const requestRoutes = require('./routes/requests');
 // Comments add a new route
 const commentRoutes = require('./routes/comments');
 
