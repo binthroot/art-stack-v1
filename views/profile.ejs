@@ -8,15 +8,27 @@
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <h2>Add a request</h2>
+            <form action="/request/createRequest" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <label for="requestName" class="form-label">Request Name</label>
+                  <input type="text" class="form-control" id="requestName" name="requestName">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price">
+            </div>
+            <div class="mb-3">
+              <label for="dateDue" class="form-label">Due Date</label>
+              <input type="date" class="form-control" id="dateDue" name="dateDue">
+            </div>
+            <div class="mb-3">
+            <label for="sku" class="form-label">SKU</label>
+            <input type="text" class="form-control" id="sku" name="sku">
+              </div>
+              <div class="mb-3">
+                <label for="descriptionTaste" class="form-label">Taste and Description</label>
+                <textarea class="form-control" id="descriptionTaste" name="descriptionTaste"></textarea>
               </div>
               <div class="mb-3">
                 <label for="imgUpload" class="form-label">Image</label>
