@@ -3,7 +3,6 @@
 
 const Request = require('../models/Request');
 const Comment = require('../models/Comment');
-const { request } = require('express');
 
 module.exports = {
   getProfile: async (req, res) => {

@@ -40,10 +40,9 @@
       </div>
       <div class="col-6">
         <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
+        <% for(var i=0; i<requests.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+            <a href="/request/<%= requests[i]._id%>">
             </a>
           </li>
         <% } %>
@@ -53,6 +52,66 @@
         </div>  
       </div>  
     </div>
-  </div>
 </div>
+
+<!-- Tailwind Request Form -->
+<section class=" py-12 text-gray-800 sm:py-24">
+  <div class="mx-auto flex max-w-md flex-col rounded-lg lg:max-w-screen-xl lg:flex-row">
+    <div class="max-w-2xl px-4 lg:pr-24">
+      <p class="mb-2 text-blue-600">Welcome Back <%= user.userName %></p>
+      <h3 class="mb-5 text-3xl font-semibold">Sign Request Form</h3>
+      <p class="mb-16 text-lg text-gray-600">Please fill out all of the details about your sign request. Any descriptions about the item will help your art team deliver a great message about the item to our customers</p>
+      <div class="mb-5 flex font-medium">
+        <div class="mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-7 text-blue-500">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
+          </svg>
+        </div>
+        <div class="">
+          <p class="mb-2">Make Sure All Request Are Approved</p>
+          <span class="font-normal text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum porro molestias quaerat maxime modi.</span>
+        </div>
+      </div>
+      <div class="mb-5 flex font-medium">
+        <div class="mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-7 text-blue-500">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+        </div>
+        <div class="">
+          <p class="mb-2">Please Double Check Your Due Date Before Submitting</p>
+          <span class="font-normal text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum porro molestias quaerat maxime modi.</span>
+        </div>
+      </div>
+      <div class="mb-5 flex font-medium">
+        <div class="mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-7 text-blue-500">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>
+        </div>
+        <div class="">
+          <p class="mb-2">Make Sure The Price Is Up To Date</p>
+          <span class="font-normal text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum porro molestias quaerat maxime modi.</span>
+        </div>
+      </div>
+    </div>
+    <div class="border border-gray-100 shadow-gray-500/20 mt-8 mb-8 max-w-md bg-white shadow-sm sm:rounded-lg sm:shadow-lg lg:mt-0">
+      <div class="relative border-b border-gray-300 p-4 py-8 sm:px-8">
+        <h3 class="mb-1 inline-block text-3xl font-medium"><span class="mr-4">Updates Coming Soon</span><span class="inline-block rounded-md bg-blue-100 px-2 py-1 text-sm text-blue-700 sm:inline">Submit Sign Request Here</span></h3>
+        <p class="text-gray-600">Great Signs Are On The Way!</p>
+      </div>
+      <div class="p-4 sm:p-8">
+        <form action="/request/createRequest" enctype="multipart/form-data" method="POST">
+        <input id="name" type="text" class="mt-4 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500" placeholder="Enter your name" />
+        <input id="email" type="email" class="peer mt-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500" placeholder="Enter your email" />
+        <div class="peer-invalid:block mt-1 hidden text-left text-xs text-rose-600">Email format Incorrect. Please complete the email</div>
+        <label class="mt-5 mb-2 inline-block max-w-full">Tell us about your company</label>
+        <textarea id="about" class="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"></textarea>
+        <button class="w-full rounded-lg border border-blue-700 bg-blue-700 p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-blue-700 hover:bg-blue-600 hover:text-white">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%- include('partials/footer') -%>
