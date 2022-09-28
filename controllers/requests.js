@@ -40,14 +40,14 @@ module.exports = {
   createRequest: async (req, res) => {
     try {
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
-
+      // const result = await cloudinary.uploader.upload(req.file.path);
+      console.log(req.body);
       await Request.create({
         requestName: req.body.requestName,
         // image: result.secure_url,
         // cloudinaryId: result.public_id,
         price: req.body.price,
-        dateDue: req.body.dateDue,
+        dueDate: req.body.dueDate,
         sku: req.body.sku,
         descriptionTaste: req.body.descriptionTaste,
         user: req.user.id,

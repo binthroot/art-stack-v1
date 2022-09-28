@@ -9,7 +9,7 @@ const RequestSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  dateDue: {
+  dueDate: {
     type: Date,
   },
   sku: {

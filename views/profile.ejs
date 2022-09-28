@@ -1,64 +1,12 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-          <div class="mt-5">
-            <h2>Add a request</h2>
-            <form action="/request/createRequest" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="requestName" class="form-label">Request Name</label>
-                  <input type="text" class="form-control" id="requestName" name="requestName">
-              </div>
-              <div class="mb-3">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price">
-            </div>
-            <div class="mb-3">
-              <label for="dateDue" class="form-label">Due Date</label>
-              <input type="date" class="form-control" id="dateDue" name="dateDue">
-            </div>
-            <div class="mb-3">
-            <label for="sku" class="form-label">SKU</label>
-            <input type="text" class="form-control" id="sku" name="sku">
-              </div>
-              <div class="mb-3">
-                <label for="descriptionTaste" class="form-label">Taste and Description</label>
-                <textarea class="form-control" id="descriptionTaste" name="descriptionTaste"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
-      </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<requests.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/request/<%= requests[i]._id%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
-    </div>
-</div>
 
 <!-- Tailwind Request Form -->
 <section class=" py-12 text-gray-800 sm:py-24">
   <div class="mx-auto flex max-w-md flex-col rounded-lg lg:max-w-screen-xl lg:flex-row">
     <div class="max-w-2xl px-4 lg:pr-24">
-      <p class="mb-2 text-blue-600">Welcome Back <%= user.userName %></p>
+      <p class="mb-2 text-blue-600">Welcome Back</p>
+      <p><strong>User Name</strong>: <%= user.userName %></p>
+      <p><strong>Email</strong>: <%= user.email %></p>
       <h3 class="mb-5 text-3xl font-semibold">Sign Request Form</h3>
       <p class="mb-16 text-lg text-gray-600">Please fill out all of the details about your sign request. Any descriptions about the item will help your art team deliver a great message about the item to our customers</p>
       <div class="mb-5 flex font-medium">
@@ -94,20 +42,81 @@
           <span class="font-normal text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum porro molestias quaerat maxime modi.</span>
         </div>
       </div>
+      <div class="flex">
+        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        <a class="btn btn-secondary" href="/feed">Return to Feed</a>
+      </div>
+
+      <!-- Tiny Request Table -->
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sign Request</th>
+              <th>Date Due</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- row 1 -->
+            <% for(var i=0; i<requests.length; i++) {%>
+                
+              
+              <tr>
+                <th><%= i+1 %> </th>
+
+                <td><a href="/request/<%= requests[i]._id%>">
+                <%=requests[i].requestName %> </a></td>
+                <!-- Sets Date Objects -->
+                <% let dueDateObj = new Date(requests[i].dueDate) %>
+                <% let createdDateObj = new Date(requests[i].createdAt) %>
+
+                <% let date = `${dueDateObj.getDate()}\\${(dueDateObj.getMonth()+1)}\\${dueDateObj.getFullYear()}`%>
+                <% let dateCreated = `${createdDateObj.getDate()}\\${(createdDateObj.getMonth()+1)}\\${createdDateObj.getFullYear()}` %>
+
+                <td><%= date %> </td>
+                <td><%= dateCreated %></td>
+              </tr>
+            <% } %>
+            <!-- row 2 -->
+            <tr>
+              <th>2</th>
+              <td>Test</td>
+              <td>Test Row</td>
+              <td>Test Row</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <!-- Form Div Starts Here -->
     <div class="border border-gray-100 shadow-gray-500/20 mt-8 mb-8 max-w-md bg-white shadow-sm sm:rounded-lg sm:shadow-lg lg:mt-0">
       <div class="relative border-b border-gray-300 p-4 py-8 sm:px-8">
-        <h3 class="mb-1 inline-block text-3xl font-medium"><span class="mr-4">Updates Coming Soon</span><span class="inline-block rounded-md bg-blue-100 px-2 py-1 text-sm text-blue-700 sm:inline">Submit Sign Request Here</span></h3>
+        <h3 class="mb-1 inline-block text-3xl font-medium"><span class="mr-4">Submit Request</span></h3>
         <p class="text-gray-600">Great Signs Are On The Way!</p>
       </div>
       <div class="p-4 sm:p-8">
-        <form action="/request/createRequest" enctype="multipart/form-data" method="POST">
-        <input id="name" type="text" class="mt-4 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500" placeholder="Enter your name" />
-        <input id="email" type="email" class="peer mt-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500" placeholder="Enter your email" />
-        <div class="peer-invalid:block mt-1 hidden text-left text-xs text-rose-600">Email format Incorrect. Please complete the email</div>
-        <label class="mt-5 mb-2 inline-block max-w-full">Tell us about your company</label>
-        <textarea id="about" class="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"></textarea>
-        <button class="w-full rounded-lg border border-blue-700 bg-blue-700 p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-blue-700 hover:bg-blue-600 hover:text-white">Send</button>
+        <form action="/request/createRequest" method="post">
+        <!-- Request name -->
+        <input id="name" type="text" id="requestName" name="requestName" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Request Name" />
+        <!-- Price -->
+        <input id="price" type="number" min="1" step="any" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter your price" name="price" />
+        <!-- Due Date -->
+        <input id="dueDate" type="date" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter the Date Due" name="dueDate" />
+          <!-- SKU Number -->
+          <input id="skuNumber" type="text" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter the SKU" name="skuNumber" />
+          <!-- Description Taste -->
+          <textarea id="descriptionTaste" type="text" class="textarea textarea-primary" name="descriptionTaste" placeholder="Please put in any descriptions that might be helpful to making this sign."></textarea>
+          <!-- TODO Add Image upload option -->
+          <!-- <div class="mb-3">
+            <label for="imgUpload" class="form-label">Image</label>
+            <input type="file" class="form-control" id="imageUpload" name="file">
+          </div> -->
+
+          <!-- TODO add error alerts here -->
+        <button type="submit" class="btn btn-primary btn-wide" value="Upload">Submit</button>
         </form>
       </div>
     </div>
