@@ -12,6 +12,6 @@ router.post('/createRequest', requestController.createRequest);
 // Will use when uploading images for request later
 // router.post('/createPost', upload.single('file'), postsController.createPost);
 
-router.delete('/deletePost/:id', postsController.deletePost);
+router.delete('/deleteRequest/:id', requestController.deleteRequest);
 
 module.exports = router;
