@@ -72,9 +72,12 @@
                 <!-- Sets Date Objects -->
                 <% let dueDateObj = new Date(requests[i].dueDate) %>
                 <% let createdDateObj = new Date(requests[i].createdAt) %>
+                
+                <!-- TODO Fix due date showing up as the previous date -->
+                <!-- TODO Format dates in a better way, leading 0's -->
+                <% let date = `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate()+1)}\\${dueDateObj.getFullYear()}`%>
 
-                <% let date = `${dueDateObj.getDate()}\\${(dueDateObj.getMonth()+1)}\\${dueDateObj.getFullYear()}`%>
-                <% let dateCreated = `${createdDateObj.getDate()}\\${(createdDateObj.getMonth()+1)}\\${createdDateObj.getFullYear()}` %>
+                <% let dateCreated = `${createdDateObj.getMonth()}\\${(createdDateObj.getDate()+1)}\\${createdDateObj.getFullYear()}` %>
 
                 <td><%= date %> </td>
                 <td><%= dateCreated %></td>

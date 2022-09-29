@@ -23,6 +23,10 @@ const RequestSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  status: {
+    type: String,
+    enum: ['Backlog', 'To-Do', 'In-Progress', 'Completed'],
+  },
   createdAt: {
     type: Date,
     default: Date.now,

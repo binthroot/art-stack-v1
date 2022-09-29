@@ -51,6 +51,7 @@ module.exports = {
         sku: req.body.sku,
         descriptionTaste: req.body.descriptionTaste,
         user: req.user.id,
+        status: 'Backlog',
       });
       console.log('Request has been added!');
       res.redirect('/profile');
