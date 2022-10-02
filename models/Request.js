@@ -23,6 +23,9 @@ const RequestSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  userName: {
+    type: String,
+  },
   status: {
     type: String,
     enum: ['Backlog', 'To-Do', 'In-Progress', 'Completed'],

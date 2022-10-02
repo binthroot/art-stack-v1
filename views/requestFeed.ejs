@@ -1,16 +1,55 @@
 <%- include('partials/header') -%>
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <ul class="row list-unstyled">
-        <!-- TODO Add a Feed of all request -->
-        <% for(var i=0; i<request.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/request/<%= request[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
+<div class="container mx-auto my-0">
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th></th>
+          <th>Sign Request</th>
+          <th>Price</th>
+          <th>User</th>
+          <th>Date Due</th>
+          <th>Date Created</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- row 1 -->
+        <% for(var i=0; i<requests.length; i++) {%>
+            
+          
+          <tr>
+            <th><%= i+1 %> </th>
+
+            <td><a href="/request/<%= requests[i]._id%>">
+            <%=requests[i].requestName %> </a></td>
+            <td><%= requests[i].price %> </td>
+            <td><%= requests[i].user %> </td>
+            <!-- Sets Date Objects -->
+            <% let dueDateObj = new Date(requests[i].dueDate) %>
+            <% let createdDateObj = new Date(requests[i].createdAt) %>
+            
+            <!-- TODO Fix due date showing up as the previous date -->
+            <!-- TODO Format dates in a better way, leading 0's -->
+            <% let date = `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate())}\\${dueDateObj.getFullYear()}`%>
+
+            <% let dateCreated = `${createdDateObj.getMonth()+1}\\${createdDateObj.getDate()}\\${createdDateObj.getFullYear()}` %>
+
+            <td><%= date %> </td>
+            <td><%= dateCreated %></td>
+            <td><%= requests[i].status %> </td>
+          </tr>
         <% } %>
-        </ul>
-    </div>
-  </div>  
+        <!-- row 2 -->
+        <tr>
+          <th>2</th>
+          <td>Test</td>
+          <td>Test Row</td>
+          <td>Test Row</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <%- include('partials/footer') -%>

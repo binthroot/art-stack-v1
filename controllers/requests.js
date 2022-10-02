@@ -3,6 +3,7 @@
 
 const Request = require('../models/Request');
 const Comment = require('../models/Comment');
+const User = require('../models/User');
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -16,7 +17,9 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const requests = await Request.find().sort({ createdAt: 'desc' }).lean();
-      res.render('feed.ejs', { requests: requests });
+      // Added users to provide username
+      const users = await User.find();
+      res.render('requestFeed.ejs', { requests: requests, users: users });
     } catch (err) {
       console.log(err);
     }
@@ -50,7 +53,8 @@ module.exports = {
         dueDate: req.body.dueDate,
         sku: req.body.sku,
         descriptionTaste: req.body.descriptionTaste,
-        user: req.user.id,
+        userId: req.user.id,
+        userName: req.user.userName,
         status: 'Backlog',
       });
       console.log('Request has been added!');
