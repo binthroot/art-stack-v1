@@ -6,10 +6,10 @@ module.exports = {
       await Comment.create({
         comment: req.body.comment,
         likes: 0,
-        post: req.params.id,
+        request: req.params.id,
       });
       console.log('Comment has been added!');
-      res.redirect('/post/' + req.params.id);
+      res.redirect('/request/' + req.params.id);
     } catch (err) {
       console.log(err);
     }
@@ -26,7 +26,7 @@ module.exports = {
         }
       );
       console.log('Likes +1');
-      res.redirect(`/post/${req.query.post}`);
+      res.redirect(`/requests/${req.query.post}`);
     } catch (err) {
       console.log(err);
     }

@@ -1,77 +1,74 @@
 <%- include('partials/header') -%>
+
+<!-- Sets Date Objects -->
+<% let dueDateObj = new Date(request.dueDate) %> <% let createdDateObj = new
+Date(request.createdAt) %>
+
+<!-- TODO Fix due date showing up as the previous date -->
+<!-- TODO Format dates in a better way, leading 0's -->
+<% let date =
+`${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate()+1)}\\${dueDateObj.getFullYear()}`%>
+<% let dateCreated =
+`${createdDateObj.getMonth()+1}\\${createdDateObj.getDate()+1}\\${createdDateObj.getFullYear()}`
+%>
+
 <div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= request.requestName %></h2>
-      <div class="row justify-content-between">
-        
-        <form
-          class="col-1"
-          action="/post/likePost/<%= request.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <h3 class="col-3">Likes: <%= request.likes %></h3>
-        <%if(request.user == user.id){ %>
-        <form
-          action="/request/deletePost/<%= request.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
-      </div>
-    </div>
-    <div class="col-3 mt-5">
-      <p><%= request.descriptionTaste %></p>
-    </div>
-
-    <!-- Create comments -->
-
-    <div class="mt-5">
-      <h2>Add a comment</h2>
-      <form action="/comment/createComment/<%=request._id%>" method="POST">
-        <div class="mb-3">
-            <label for="comment" class="form-label">Comment</label>
-            <!-- Name gives us a req.body.comment to use in our controller -->
-            <input type="text" class="form-control" id="comment" name="comment">
+  <div class="flex justify-center">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-2xl">
+      <!-- Split columns -->
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="pr-14 max-w-md">
+          <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              Request Name
+            </h5>
+            <p class="text-gray-700 text-base mb-4">
+              <%= request.requestName %>
+            </p>
+          </div>
+          <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              Date Created
+            </h5>
+            <p class="text-gray-700 text-base mb-4"><%= dateCreated %></p>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-      </form>
-    </div>
 
-    <!-- Comments here -->
-    <ul>
-      <% for(var i=0; i<comments.length; i++) {%>
-        <p class="col-6 justify-content-between mt-5">
-          <% console.log(comments[i]._id) %> 
-          <p><%= comments[i].comment %></p>
-          <p><%= comments[i].likes %></p>
-          <form
-          class="col-1"
-          action="/comment/likeComment/<%=comments[i]._id%>?_method=PUT&request=<%=request._id%>"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <form
-        action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE&post=<%=post._id%>"
-        method="POST"
-        class="col-3"
+        <div class="pr-14 max-w-md">
+          <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              Price
+            </h5>
+            <p class="text-gray-700 text-base mb-4"><%= request.price %></p>
+          </div>
+          <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              Date Due
+            </h5>
+            <p class="text-gray-700 text-base mb-4"><%= date %></p>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
       >
-        <button class="btn btn-primary fa fa-trash" type="submit"></button>
-      </form>  
-        </li>
-      <% } %>
-      <!-- TODO add likes to comment-->
-    </ul>
-
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        Button
+      </button>
     </div>
+  </div>
+
+  <div class="col-6 mt-5">
+    <a class="btn btn-primary" href="/profile">Return to Profile</a>
+    <a class="btn btn-primary" href="/requestFeed">Return to Feed</a>
   </div>
 </div>
 

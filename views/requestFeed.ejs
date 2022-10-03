@@ -17,15 +17,15 @@
       <tbody>
         <!-- row 1 -->
         <% for(var i=0; i<requests.length; i++) {%>
-            
+            <% let {requestName,price,userName, status} = requests[i] %>
           
           <tr>
             <th><%= i+1 %> </th>
 
             <td><a href="/request/<%= requests[i]._id%>">
-            <%=requests[i].requestName %> </a></td>
+            <%=requestName %> </a></td>
             <td><%= requests[i].price %> </td>
-            <td><%= requests[i].user %> </td>
+            <td><%= requests[i].userName %> </td>
             <!-- Sets Date Objects -->
             <% let dueDateObj = new Date(requests[i].dueDate) %>
             <% let createdDateObj = new Date(requests[i].createdAt) %>
@@ -41,13 +41,6 @@
             <td><%= requests[i].status %> </td>
           </tr>
         <% } %>
-        <!-- row 2 -->
-        <tr>
-          <th>2</th>
-          <td>Test</td>
-          <td>Test Row</td>
-          <td>Test Row</td>
-        </tr>
       </tbody>
     </table>
   </div>
