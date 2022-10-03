@@ -1,7 +1,8 @@
 <%- include('partials/header') -%>
-<div class="container mx-auto my-0">
-  <div class="overflow-x-auto">
-    <table class="table table-zebra w-full">
+<div class="container mx-auto my-0 h-screen">
+  <h2 class="pt-4 pb-4 text-2xl">Request In the Hopper</h2>
+  <div class="overflow-x-auto m-auto">
+    <table class="table table-zebra w-full mb-4">
       <!-- head -->
       <thead>
         <tr>
@@ -12,6 +13,7 @@
           <th>Date Due</th>
           <th>Date Created</th>
           <th>Status</th>
+          <th>Options</th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +41,14 @@
             <td><%= date %> </td>
             <td><%= dateCreated %></td>
             <td><%= requests[i].status %> </td>
+            <td>
+        <form
+          action="/request/deleteRequest/<%=requests[i]._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>
+            </td>
           </tr>
         <% } %>
       </tbody>

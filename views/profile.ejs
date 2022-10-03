@@ -42,58 +42,12 @@
           <span class="font-normal text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum porro molestias quaerat maxime modi.</span>
         </div>
       </div>
-      <div class="flex">
-        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+      <div class="flex justify-around">
         <a class="btn btn-secondary" href="/requestFeed">Return to Feed</a>
-      </div>
-
-      <!-- Tiny Request Table -->
-      <div class="overflow-x-auto">
-        <table class="table table-zebra w-full">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th></th>
-              <th>Sign Request</th>
-              <th>Date Due</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- row 1 -->
-            <% for(var i=0; i<requests.length; i++) {%>
-                
-              
-              <tr>
-                <th><%= i+1 %> </th>
-
-                <td><a href="/request/<%= requests[i]._id%>">
-                <%=requests[i].requestName %> </a></td>
-                <!-- Sets Date Objects -->
-                <% let dueDateObj = new Date(requests[i].dueDate) %>
-                <% let createdDateObj = new Date(requests[i].createdAt) %>
-                
-                <!-- TODO Fix due date showing up as the previous date -->
-                <!-- TODO Format dates in a better way, leading 0's -->
-                <% let date = `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate()+1)}\\${dueDateObj.getFullYear()}`%>
-
-                <% let dateCreated = `${createdDateObj.getMonth()}\\${(createdDateObj.getDate()+1)}\\${createdDateObj.getFullYear()}` %>
-
-                <td><%= date %> </td>
-                <td><%= dateCreated %></td>
-              </tr>
-            <% } %>
-            <!-- row 2 -->
-            <tr>
-              <th>2</th>
-              <td>Test</td>
-              <td>Test Row</td>
-              <td>Test Row</td>
-            </tr>
-          </tbody>
-        </table>
+        <a class="btn btn-primary" href="/logout">Logout</a>
       </div>
     </div>
+
     <!-- Form Div Starts Here -->
     <div class="border border-gray-100 shadow-gray-500/20 mt-8 mb-8 max-w-md bg-white shadow-sm sm:rounded-lg sm:shadow-lg lg:mt-0">
       <div class="relative border-b border-gray-300 p-4 py-8 sm:px-8">
@@ -107,11 +61,14 @@
         <!-- Price -->
         <input id="price" type="number" min="1" step="any" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter your price" name="price" />
         <!-- Due Date -->
-        <input id="dueDate" type="date" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter the Date Due" name="dueDate" />
+        <div class="form-control">
+          <label>Date Due</label>
+          <input id="dueDate" type="date" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter the Date Due" name="dueDate" />
+        </div>
           <!-- SKU Number -->
           <input id="skuNumber" type="text" class="input input-bordered input-primary w-full max-w-xs mb-4" placeholder="Enter the SKU" name="skuNumber" />
           <!-- Description Taste -->
-          <textarea id="descriptionTaste" type="text" class="textarea textarea-primary" name="descriptionTaste" placeholder="Please put in any descriptions that might be helpful to making this sign."></textarea>
+          <textarea id="descriptionTaste" type="text" class="textarea textarea-primary w-full" name="descriptionTaste" placeholder="Please put in any descriptions that might be helpful to making this sign."></textarea>
           <!-- TODO Add Image upload option -->
           <!-- <div class="mb-3">
             <label for="imgUpload" class="form-label">Image</label>
@@ -119,11 +76,61 @@
           </div> -->
 
           <!-- TODO add error alerts here -->
-        <button type="submit" class="btn btn-primary btn-wide" value="Upload">Submit</button>
+        <button type="submit" class="btn btn-primary btn-wide mx-auto" value="Upload">Submit</button>
         </form>
       </div>
     </div>
   </div>
 </section>
 
+
+<!-- Tiny Request Table -->
+<div class="mx-auto max-w-xl rounded-lg lg:max-w-screen-xl pb-8">
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th></th>
+          <th>Sign Request</th>
+          <th>Date Due</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- row 1 -->
+        <% for(var i=0; i<requests.length; i++) {%>
+            
+          
+          <tr>
+            <th><%= i+1 %> </th>
+  
+            <td><a href="/request/<%= requests[i]._id%>">
+            <%=requests[i].requestName %> </a></td>
+            <!-- Sets Date Objects -->
+            <% let dueDateObj = new Date(requests[i].dueDate) %>
+            <% let createdDateObj = new Date(requests[i].createdAt) %>
+            
+            <!-- TODO Fix due date showing up as the previous date -->
+            <!-- TODO Format dates in a better way, leading 0's -->
+            <% let date = `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate()+1)}\\${dueDateObj.getFullYear()}`%>
+  
+            <% let dateCreated = `${createdDateObj.getMonth()}\\${(createdDateObj.getDate()+1)}\\${createdDateObj.getFullYear()}` %>
+  
+            <td><%= date %> </td>
+            <td><%= dateCreated %></td>
+          </tr>
+        <% } %>
+        <!-- row 2 -->
+        <tr>
+          <th>2</th>
+          <td>Test</td>
+          <td>Test Row</td>
+          <td>Test Row</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
 <%- include('partials/footer') -%>

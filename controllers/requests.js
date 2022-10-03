@@ -9,6 +9,7 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const requests = await Request.find({ user: req.user.id });
+      console.log(req.user.id);
       res.render('profile.ejs', { requests: requests, user: req.user });
     } catch (err) {
       console.log(err);
@@ -53,7 +54,7 @@ module.exports = {
         dueDate: req.body.dueDate,
         sku: req.body.sku,
         descriptionTaste: req.body.descriptionTaste,
-        userId: req.user.id,
+        user: req.user.id,
         userName: req.user.userName,
         status: 'Backlog',
       });
@@ -68,8 +69,10 @@ module.exports = {
     try {
       // Find post by id
       let post = await Request.findById({ _id: req.params.id });
+
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
+      // await cloudinary.uploader.destroy(post.cloudinaryId);
+
       // Delete post from db
       await Request.remove({ _id: req.params.id });
       console.log('Deleted Request');
