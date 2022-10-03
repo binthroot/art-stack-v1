@@ -1,11 +1,11 @@
 {
-  "name": "binary-upload-boom",
+  "name": "art-Stack",
   "version": "1.0.0",
-  "description": "100Devs Social Network",
+  "description": "An Organization Tool for Speciality Grocery",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "test": "nodemon server.js",
     "build": "npx tailwindcss -i ./src/input.css -o ./public/css/output.css"
   },
   "author": "",
