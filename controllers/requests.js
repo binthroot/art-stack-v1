@@ -81,4 +81,52 @@ module.exports = {
       res.redirect('/profile');
     }
   },
+
+  //TODO
+  //renders the page that we'll edit with
+  getEditPage: async (req, res) => {
+    try {
+      // TODO - alter profile page to list request by user
+      const request = await Request.findById(req.params.id);
+      const comments = await Comment.find({ post: req.params.id })
+        .sort({ createdAt: 'desc' })
+        .lean();
+      res.render('editRequest.ejs', {
+        request: request,
+        user: req.user,
+        comments: comments,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  //TODO
+  // puts in the request that changes the data in the schema
+  editRequest: async (req, res) => {
+    try {
+      await Request.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: {
+            // TODO - figure out how to update all these values
+            requestName: req.body.requestName,
+            // image: result.secure_url,
+            // cloudinaryId: result.public_id,
+            price: req.body.price,
+            dueDate: req.body.dueDate,
+            sku: req.body.sku,
+            descriptionTaste: req.body.descriptionTaste,
+            user: req.user.id,
+            userName: req.user.userName,
+            status: 'Backlog',
+          },
+        }
+      );
+      console.log('Request edited');
+      res.redirect(`/request/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };

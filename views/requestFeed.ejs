@@ -20,7 +20,13 @@
         <!-- row 1 -->
         <% for(var i=0; i<requests.length; i++) {%>
             <% let {requestName,price,userName, status} = requests[i] %>
-          
+            <% let badgeStatus = {
+              'Backlog': '-accent', 
+              'To-Do': '-primary', 
+              'In-Progress': '-secondary', 
+              'Completed': '' 
+            } %>
+
           <tr>
             <th><%= i+1 %> </th>
 
@@ -40,7 +46,7 @@
 
             <td><%= date %> </td>
             <td><%= dateCreated %></td>
-            <td><%= requests[i].status %> </td>
+            <td><div class='badge badge<%= badgeStatus[status] %>'><%= status %></div></td>
             <td>
         <form
           action="/request/deleteRequest/<%=requests[i]._id %>?_method=DELETE"

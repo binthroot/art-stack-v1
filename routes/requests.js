@@ -14,4 +14,10 @@ router.post('/createRequest', requestController.createRequest);
 
 router.delete('/deleteRequest/:id', requestController.deleteRequest);
 
+// TODO - edit post option
+
+router.get('/getEditPage/:id', requestController.getEditPage);
+
+router.put('/editRequest/:id', requestController.editRequest);
+
 module.exports = router;
