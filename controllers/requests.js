@@ -117,9 +117,7 @@ module.exports = {
             dueDate: req.body.dueDate,
             sku: req.body.sku,
             descriptionTaste: req.body.descriptionTaste,
-            user: req.user.id,
-            userName: req.user.userName,
-            status: 'Backlog',
+            status: req.body.status,
           },
         }
       );

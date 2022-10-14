@@ -36,6 +36,14 @@ Date(request.createdAt) %>
             </h5>
             <p class="text-gray-700 text-base mb-4"><%= dateCreated %></p>
           </div>
+          <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              User Requested
+            </h5>
+            <p class="text-gray-700 text-base mb-4"><%= request.userName %></p>
+          </div>
         </div>
 
         <div class="pr-14 max-w-md">
@@ -55,7 +63,24 @@ Date(request.createdAt) %>
             </h5>
             <p class="text-gray-700 text-base mb-4"><%= date %></p>
           </div>
+          <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              Current Status
+            </h5>
+            <p class="text-gray-700 text-base mb-4"><%= request.status %></p>
+          </div>
         </div>
+      </div>
+    
+      <div class="mb-4">
+            <h5
+              class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
+            >
+              Details for Sign
+            </h5>
+            <p class="text-gray-700 text-base mb-4"><%= request.descriptionTaste %></p>
       </div>
       <div class="flex">
         <form
