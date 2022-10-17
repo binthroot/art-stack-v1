@@ -40,7 +40,7 @@
             
             <!-- TODO Fix due date showing up as the previous date -->
             <!-- TODO Format dates in a better way, leading 0's -->
-            <% let date = `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate())}\\${dueDateObj.getFullYear()}`%>
+            <% let date = `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate()+1)}\\${dueDateObj.getFullYear()}`%>
 
             <% let dateCreated = `${createdDateObj.getMonth()+1}\\${createdDateObj.getDate()}\\${createdDateObj.getFullYear()}` %>
 
@@ -61,4 +61,6 @@
     </table>
   </div>
 </div>
+<div class="badge-primary badge-secondary badge-accent hidden"></div>
+
 <%- include('partials/footer') -%>

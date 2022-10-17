@@ -8,13 +8,15 @@ Date(request.createdAt) %>
 <!-- TODO Format dates in a better way, leading 0's -->
 <% let date =
 `${dueDateObj.getMonth()+1}\\${(dueDateObj.getDate()+1)}\\${dueDateObj.getFullYear()}`%>
-<% let dateCreated =
+<abel% let dateCreated =
 `${createdDateObj.getMonth()+1}\\${createdDateObj.getDate()+1}\\${createdDateObj.getFullYear()}`
 %>
 
 <div class="container">
   <div class="flex justify-center">
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-2xl">
+      <form action="/request/editRequest/<%=request._id%>?_method=UPDATE"
+          method="POST">
       <!-- Split columns -->
       <div class="flex flex-col md:flex-row gap-2">
         <div class="pr-14 max-w-md">
@@ -24,7 +26,7 @@ Date(request.createdAt) %>
             >
               Request Name
             </h5>
-            <input type='text' class="input" value='<%= request.requestName %>'>
+            <input type='text' class="input" name="requestName" id="requestName" value='<%= request.requestName %>'>
             </input>
           </div>
           <div class="mb-4">
@@ -32,8 +34,8 @@ Date(request.createdAt) %>
               class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
             >
               Current Status
-            </>
-            <select name="status" id=""
+          </label>
+            <select name="status" id="status"
             class="select select-primary" 
             value="<%=request.status%>">
               <option value="Backlog">Backlog</option>
@@ -45,13 +47,14 @@ Date(request.createdAt) %>
         </div>
 
         <div class="pr-14 max-w-md">
+          
           <div class="mb-4">
             <h5
               class="text-gray-900 text-2xl leading-tight font-semibold mb-2 uppercase"
             >
               Price
             </h5>
-            <input type='text' class="input" value='<%= request.price %>'>
+            <input type='text' class="input" name="price" id="price" value='<%= request.price %>'>
             </input>
           </div>
           <div class="mb-4">
@@ -60,19 +63,21 @@ Date(request.createdAt) %>
             >
               Date Due
             </h5>
-            <input type='date' class="input" value='<%= date %>'>
+            <input type='date' class="input" name="dueDate" id="dueDate" value='<%= date %>'>
             </input>
           </div>
+          
         </div>
       </div>
       <div class="flex">
         <button
-          type="button"
+          type="submit"
           class="inline-block px-6 py-2.5 bg-primary text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-content hover:shadow-lg focus:bg-primary-focus focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
         >
-          Button
+          Submit
         </button>
       </div>
+    </form>
     </div>
   </div>
 

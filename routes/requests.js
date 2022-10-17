@@ -18,6 +18,6 @@ router.delete('/deleteRequest/:id', requestController.deleteRequest);
 
 router.get('/getEditPage/:id', requestController.getEditPage);
 
-router.put('/editRequest/:id', requestController.editRequest);
+router.post('/editRequest/:id', requestController.editRequest);
 
 module.exports = router;
